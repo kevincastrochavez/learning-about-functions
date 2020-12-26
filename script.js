@@ -3,19 +3,50 @@
 ///////////////////////////////////
 ///// DEFAULT PARAMETERS
 
-const bookings = [];
+// const bookings = [];
 
-const createBooking = function (flightNum, numPass = 1, price = 199) {
-  const booking = {
-    flightNum,
-    numPass,
-    price,
-  };
-  console.log(booking);
-  bookings.push(booking);
+// const createBooking = function (flightNum, numPass = 1, price = 199) {
+//   const booking = {
+//     flightNum,
+//     numPass,
+//     price,
+//   };
+//   console.log(booking);
+//   bookings.push(booking);
+// };
+
+// createBooking('LH123');
+// createBooking('LH123', 4, 250);
+// // When want to skip a parameter, set to undefined
+// createBooking('LH123', undefined, 250);
+
+///////////////////////////////////
+///// PASSING ARGUMENTS: VALUES VS REFERENCE
+
+const flight = 'LH234';
+const kevin = {
+  name: 'Kevin Castro',
+  passport: 21354654,
 };
 
-createBooking('LH123');
-createBooking('LH123', 4, 250);
-// When want to skip a parameter, set to undefined
-createBooking('LH123', undefined, 250);
+const checkIn = function (flightNum, passenger) {
+  flightNum = 'LH999';
+  passenger.name = `Mr ${passenger.name}`;
+
+  if (passenger.passport === 21354654) {
+    alert('Check In');
+  } else {
+    alert('Wrong password');
+  }
+};
+
+checkIn(flight, kevin);
+console.log(flight);
+console.log(kevin);
+
+const newPassport = function (person) {
+  person.passport = Math.trunc(Math.random() * 10000);
+};
+
+newPassport(kevin);
+checkIn(flight, kevin);
