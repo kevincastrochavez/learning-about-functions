@@ -101,9 +101,9 @@ const lufthansa = {
   },
 };
 
-lufthansa.book(239, 'Kevin Castro');
-lufthansa.book(635, 'Cindy Chávez');
-console.log(lufthansa);
+// lufthansa.book(239, 'Kevin Castro');
+// lufthansa.book(635, 'Cindy Chávez');
+// console.log(lufthansa);
 
 const eurowings = {
   airline: 'Eurowings',
@@ -111,20 +111,49 @@ const eurowings = {
   bookings: [],
 };
 
-const book = lufthansa.book;
+// const book = lufthansa.book;
 // DOES NOT WORK BECAUSE IT IS A REGULAR FUNCTION
 // book(239, 'Jared Castro');
 
-// CALL METHOD
-book.call(eurowings, 102, 'Jared Castro');
-console.log(eurowings);
+// // CALL METHOD
+// book.call(eurowings, 102, 'Jared Castro');
+// console.log(eurowings);
 
-book.call(lufthansa, 569, 'Alicia Chávez');
-console.log(lufthansa);
+// book.call(lufthansa, 569, 'Alicia Chávez');
+// console.log(lufthansa);
 
-//APPLY METHOD
-const flightData = [593, 'Juan Clavino'];
-book.apply(eurowings, flightData);
-console.log(eurowings);
+// //APPLY METHOD
+// const flightData = [593, 'Juan Clavino'];
+// book.apply(eurowings, flightData);
+// console.log(eurowings);
 
-book.call(eurowings, ...flightData);
+// book.call(eurowings, ...flightData);
+
+// //BIND METHOD
+// const bookEW = book.bind(eurowings);
+// bookEW(23, 'José Cuervo');
+// // console.log(bookEW);
+
+// const bookEW23 = book.bind(eurowings, 23);
+// bookEW23('Poncho');
+
+// lufthansa.planes = 300;
+// lufthansa.buyplane = function () {
+//   console.log(this);
+
+//   this.planes++;
+//   console.log(this.planes);
+// };
+
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', lufthansa.buyplane.bind(lufthansa));
+
+//Partial Application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(10, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+
+console.log(addVAT(100));
+console.log(addVAT(23));
