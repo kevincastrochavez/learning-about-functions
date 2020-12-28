@@ -230,8 +230,27 @@ const eurowings = {
 ///////////////////////////////////////
 // Immediately Invoked Function Expressions (IIFE)
 
-(function () {
-  console.log('This will never run again');
-})();
+// (function () {
+//   console.log('This will never run again');
+// })();
 
-(() => console.log('This will never run again, arrow function'))();
+// (() => console.log('This will never run again, arrow function'))();
+
+///////////////////////////////////////
+// Closures
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+
+booker();
+console.dir(booker);
